@@ -1,0 +1,59 @@
+<%= form_for(@message, local: true) do |form| %>
+  <% if message.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(message.errors.count, "error") %> prohibited this message from being saved:</h2>
+
+      <ul>
+      <% message.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="row">
+    <div class="form-group col-md-4">
+      <%= form.label :message %><br />
+      <%= form.text_area :message, autofocus: true, class: "form-control" %>
+    </div>
+  </div>
+  <%= form.hidden_field :client_id, value: current_client.id %>
+  <div class="row">
+    <div class="form-group col-md-4">
+      <%= label :calendars, 'Kindly select an option to whom you want to chat...' %>
+      
+      <input type="radio" name="calendars" class="user-radio" value="users">User
+      
+      <input type="radio" name="calendars" class="trainer-radio" value="trainers">Trainer
+      <br>
+    </div>
+  </div>
+  <div class="row users_select" id="users">
+    <div class="form-group col-md-4">
+      <%= form.label :receiver_ids, 'Receivers' %>
+      <%= form.select(:receiver_ids, @all_users.collect{ |r| [r.name.titleize, r.id]},{:include_hidden => false}, {  autofocus: true, :multiple => true, data: { placeholder: "Select Clients" }, class: 'form-control select_fun'  }) %>
+    </div>
+  </div>
+  <div class="row users_select" id="trainers">
+    <div class="form-group col-md-4">
+      <%= form.label :receiver_ids, 'Receivers' %>
+      <%= form.select(:receiver_ids, @all_trainers.collect{ |r| [r.name.titleize, r.id]},{:include_hidden => false}, {  autofocus: true, :multiple => true, data: { placeholder: "Select Clients" }, class: 'form-control select_fun'  }) %>
+    </div>
+  </div>
+  <div class="actions">
+    <%= form.submit "Send Message", class: "btn btn-lg btn-primary" %>
+  </div>
+<% end %>
+
+<script type="text/javascript">
+
+  $( document ).on('turbolinks:load', function() {
+    $('.users_select').css("display","none");
+    $('input[type=radio][name=calendars]').change(function() {
+      $('.users_select').css("display","none");
+      var fieldToShow = $(this).val();
+      $("#" + fieldToShow).css("display","block");
+      console.log(fieldToShow);
+    });
+  });
+</script>

@@ -1,0 +1,15 @@
+<h4>New Message</h4>
+<div class="header-info">
+  Logged in:
+  
+  <div class="user-name" %>
+      <%= current_client.name.titleize %>
+  </div>
+    
+  <%= link_to 'Logout', destroy_client_session_path, class: 'link-designing btn btn-danger',  method: :delete %>
+  <%= link_to 'All Chat', messages_path, class: 'link-designing btn btn-primary' %>
+</div>
+
+<%= render 'form', message: @message %>
+
+<%= link_to 'Back', messages_path %>

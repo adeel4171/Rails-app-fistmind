@@ -1,0 +1,51 @@
+<% if notice %>
+  <p id="notice" class="alert alert-success"><%= notice %></p>
+<% end %>
+
+<div class="header-info">
+  Logged in:
+  
+  <div class="user-name" %>
+      <%= current_client.name.titleize %>
+  </div>
+    
+  <%= link_to 'Logout', destroy_client_session_path, class: 'link-designing btn btn-danger',  method: :delete %>
+  <%= link_to 'New Chat', new_message_path, class: 'link-designing btn btn-primary' %>
+</div>
+
+<h4>Messages Sent</h4>
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @sent_messages.each do |message| %>
+      <tr>
+        <td><%= message.message %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<h4> Messages Received </h4>
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @receive_messages.each do |message| %>
+      <tr>
+        <td><%= message.message %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

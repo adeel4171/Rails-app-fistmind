@@ -1,0 +1,59 @@
+@import "bootstrap-sprockets";
+@import "bootstrap";
+@import "select2";
+@import "select2-bootstrap";
+
+#main-container {
+  position: relative;
+  padding-top: 70px;
+  padding-bottom: 50px;
+}
+
+.devise-container {
+  width: 345px;
+  padding-left: 15px;
+}
+
+.product-block {
+  width: 750px;
+}
+
+.btn {
+  text-decoration: none;
+}
+
+body {
+  background: #f2f2f2;
+}
+.header-info{
+  float: right;
+}
+.header-info a:link{
+  text-decoration:none;
+}
+.link-designing{
+  margin-right: 30px;
+}
+h4 {
+  color: green;
+}
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: green;
+    color: white;
+    text-align: center;
+}
+.user-name
+{
+  margin-right: 20px;
+  color: #23527c;
+  display: inline;
+  font-size: 18px;
+}
+.chat
+{
+  margin-top: 10%;
+}
